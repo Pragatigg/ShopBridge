@@ -1,70 +1,89 @@
 import { Fragment } from "react";
-import { Row, Col, Table, Button, Tooltip, Space, Popconfirm } from 'antd';
+import { Row, Col, Spin, Button, Card, Popconfirm } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import purify from "dompurify";
 
-const COLUMNS = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      width: 200,
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-      render: (desc) => (
-          <div dangerouslySetInnerHTML={{ __html: purify.sanitize(desc) }} />
-      )
-    },
-    {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-      width: 100,
-    },
-    {
-        title: 'Action',
-        dataIndex: '',
-        key: 'action',
-        render: () => (
-            <Space>
-                <Tooltip title="edit">
-                    <Button type="primary" shape="circle" icon={<EditOutlined />} />
-                </Tooltip>
-                <Popconfirm
-                    title="Are you sure to delete this product?"
-                    onConfirm={() => {}}
-                    onCancel={() => {}}
-                    okText="Yes"
-                    cancelText="No"
-                >
-                    <Tooltip title="delete">
-                        <Button type="danger" shape="circle" icon={<DeleteOutlined />} />
-                    </Tooltip>
-                </Popconfirm>
-            </Space>
-        )
-    }
-];
+import "./styles.scss";
+
+const { Meta } = Card;
 
 const List = ({ products, isLoading }) => {
+    const renderDescription = (description) => {
+        return (
+            <div dangerouslySetInnerHTML={{ __html: purify.sanitize(description) }} />
+        );
+    }
+
+    const renderPrice = (price_sign, price) => {
+        return (
+            <div className="price">
+                <b>{`${price_sign || "₹"} ${price}`}</b>
+            </div>
+        )
+    }
+
+    const renderEdit = (id) => {
+        return (
+            <EditOutlined key="edit" />
+        );
+    }
+
+    const renderDelete = (id) => {
+        return (
+            <Popconfirm
+                title="Are you sure to delete this product?"
+                onConfirm={() => {}}
+                onCancel={() => {}}
+                okText="Yes"
+                cancelText="No"
+            >
+                <DeleteOutlined type="danger" />
+            </Popconfirm>
+        );
+    }
+
     return (
         <Fragment>
             <Row className="mb-3">
                 <Col span={24} align="right">
-                    <Button type="primary" icon={<PlusOutlined />}>
-                        Add New Product
+                    <Button shape="circle" type="primary" icon={<PlusOutlined />}>
                     </Button>
                 </Col>
             </Row>
-            <Table
-                bordered
-                columns={COLUMNS}
-                dataSource={products}
-                loading={isLoading} 
-            />
+            { isLoading ? (
+                <Row>
+                    <Col span={24}>
+                        <div align="center">
+                            <Spin />
+                            <div> Fetching products...</div>
+                        </div>
+                    </Col>
+                </Row>
+            ) : (
+                <Row>
+                    <Col span={24}>
+                        {products.map(({ id, name, image_link, description, price_sign, price }) => (
+                            <Card
+                                hoverable
+                                bordered
+                                className="product-card"
+                                style={{ width: 240 }}
+                                cover={<img alt="example" src={image_link} />}
+                                actions={[
+                                    renderPrice(price_sign, price),
+                                    renderEdit(id),
+                                    renderDelete(id),
+                                ]}
+                            >
+                                <Meta
+                                    title={name}
+                                    description={renderDescription(description)} 
+                                />
+                            </Card>
+                        ))}
+                    </Col>
+                </Row>
+            )}
         </Fragment>
     );
 };

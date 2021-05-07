@@ -5,7 +5,7 @@ import axios from "axios";
 
 function* fetchProducts() {
     try {
-       const response = yield call(axios.get, "http://makeup-api.herokuapp.com/api/v1/products.json");
+       const response = yield call(axios.get, "http://makeup-api.herokuapp.com/api/v1/products.json?brand=nyx");
        const { data = [] } = response;
        yield put(fetchProductsSuccess(data));
     } catch (e) {
