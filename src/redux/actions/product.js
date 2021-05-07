@@ -1,13 +1,17 @@
-import { 
-    PRODUCTS_FETCH_INITIATED, 
-    PRODUCTS_FETCH_SUCCEEDED, 
-    PRODUCTS_FETCH_FAILED, 
+import {
+    PRODUCTS_FETCH_INITIATED,
+    PRODUCTS_FETCH_SUCCEEDED,
+    PRODUCTS_FETCH_FAILED,
     PRODUCT_DELETE_INITIATED,
     PRODUCT_DELETE_SUCCEEDED,
     PRODUCT_DELETE_FAILED,
-    PRODUCT_FETCH_INITIATED, 
-    PRODUCT_FETCH_SUCCEEDED, 
-    PRODUCT_FETCH_FAILED, 
+    PRODUCT_FETCH_INITIATED,
+    PRODUCT_FETCH_SUCCEEDED,
+    PRODUCT_FETCH_FAILED,
+    PRODUCT_UPDATE_INITIATED,
+    PRODUCT_UPDATE_SUCCEEDED,
+    PRODUCT_UPDATE_FAILED,
+    RESET_PRODUCT
 } from 'redux/constants/products';
 
 export const fetchProducts = () => ({
@@ -19,9 +23,8 @@ export const fetchProductsSuccess = data => ({
     payload: data
 });
 
-export const fetchProductsFail = error => ({
+export const fetchProductsFail = () => ({
     type: PRODUCTS_FETCH_FAILED,
-    payload: error
 });
 
 export const deleteProduct = id => ({
@@ -34,9 +37,8 @@ export const deleteProductSuccess = (id) => ({
     payload: id
 });
 
-export const deleteProductFail = error => ({
+export const deleteProductFail = () => ({
     type: PRODUCT_DELETE_FAILED,
-    payload: error
 });
 
 export const fetchProduct = id => ({
@@ -49,7 +51,23 @@ export const fetchProductSuccess = data => ({
     payload: data
 });
 
-export const fetchProductFail = error => ({
+export const fetchProductFail = () => ({
     type: PRODUCT_FETCH_FAILED,
-    payload: error
+});
+
+export const updateProduct = (id, data) => ({
+  type: PRODUCT_UPDATE_INITIATED,
+  payload: { id, data }
+});
+
+export const updateProductSuccess = () => ({
+  type: PRODUCT_UPDATE_SUCCEEDED,
+});
+
+export const updateProductFailed = () => ({
+  type: PRODUCT_UPDATE_FAILED,
+});
+
+export const resetProduct = () => ({
+  type: RESET_PRODUCT
 });

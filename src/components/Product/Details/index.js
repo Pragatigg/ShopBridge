@@ -1,20 +1,33 @@
 import PropTypes from 'prop-types';
-import { Row, Col, Input, Button, Space, Card } from "antd";
+import { Row, Col, Input, Button, Space, Card, Select, Image } from "antd";
 import { Link } from "react-router-dom";
+import { currencies } from "./constants";
+
 import './styles.scss';
 
 const { TextArea } = Input;
+const { Option } = Select;
 
-const Details = ({ product, isLoading, isNew }) => {
-    const { 
-        name, 
-        description, 
-        price, 
+const Details = ({ product, isLoading, isNew, onSubmit, isUpdating }) => {
+    const {
+        name,
+        description,
+        price,
         price_sign: priceSign,
-        image_link: imageLink 
+        image_link: imageLink
     } = product;
     return (
         <Card bordered={false} className="product-detail-card">
+            {!isNew && imageLink && (
+              <Row className="mb-3">
+                  <Col span={24} align="center">
+                    <Image
+                      width={200}
+                      src={imageLink}
+                    />
+                  </Col>
+              </Row>
+            )}
             <Row className="mb-3">
                 <Col span={4}>
                     Name:
@@ -36,7 +49,11 @@ const Details = ({ product, isLoading, isNew }) => {
                     Price Symbol:
                 </Col>
                 <Col span={20}>
-                    <Input value={priceSign} placeholder="Product price symbol" />
+                  <Select value={priceSign || "₹"}>
+                    { currencies.map(currency => (
+                      <Option key={currency} value={currency}>{currency}</Option>
+                    ))}
+                  </Select>
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -58,7 +75,7 @@ const Details = ({ product, isLoading, isNew }) => {
             <Row className="mb-3">
                 <Col span={24} align="right">
                     <Space>
-                        <Button type="primary" loading={isLoading}>
+                        <Button type="primary" loading={isLoading || isUpdating} onClick={onSubmit}>
                             {isNew ? "Create Product" : "Update Product"}
                         </Button>
                         <Link to="/">
@@ -73,7 +90,7 @@ const Details = ({ product, isLoading, isNew }) => {
 
 Details.propTypes = {
     product: PropTypes.shape({
-        name: PropTypes.string, 
+        name: PropTypes.string,
         image_link: PropTypes.string,
         description: PropTypes.string,
         price_sign: PropTypes.string,
@@ -83,7 +100,9 @@ Details.propTypes = {
         ])
     }).isRequired,
     isLoading: PropTypes.bool.isRequired,
-    isNew: PropTypes.bool.isRequired
+    isNew: PropTypes.bool.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    isUpdating: PropTypes.bool.isRequired
 };
 
 export default Details;

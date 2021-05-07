@@ -1,4 +1,12 @@
 .product-detail-card.ant-card {
-    width: 700px;
+    max-width: 900px;
     margin: auto;
+
+    .ant-card-body {
+      padding-top: 0;
+    }
+
+    .ant-select {
+      width: 100%;
+    }
 }

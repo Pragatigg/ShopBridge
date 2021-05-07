@@ -1,12 +1,17 @@
-import { 
-    PRODUCT_FETCH_INITIATED, 
-    PRODUCT_FETCH_SUCCEEDED, 
-    PRODUCT_FETCH_FAILED
+import {
+    PRODUCT_FETCH_INITIATED,
+    PRODUCT_FETCH_SUCCEEDED,
+    PRODUCT_FETCH_FAILED,
+    PRODUCT_UPDATE_INITIATED,
+    PRODUCT_UPDATE_SUCCEEDED,
+    PRODUCT_UPDATE_FAILED,
+    RESET_PRODUCT
 } from 'redux/constants/products';
 
 const initialState = {
     isLoading: false,
     data: {},
+    isUpdating: false,
 };
 
 const productReducer = (state = initialState, action) => {
@@ -27,7 +32,17 @@ const productReducer = (state = initialState, action) => {
             isLoading: false,
             data: {},
         }
-        default: return state; 
+        case PRODUCT_UPDATE_INITIATED: return {
+          ...state,
+          isUpdating: true,
+        }
+        case PRODUCT_UPDATE_SUCCEEDED:
+        case PRODUCT_UPDATE_FAILED: return {
+          ...state,
+          isUpdating: false,
+        }
+        case RESET_PRODUCT: return initialState;
+        default: return state;
     }
 };
 
