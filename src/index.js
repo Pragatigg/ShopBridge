@@ -10,7 +10,7 @@ import {
 
 
 import List from 'containers/Product/List';
-import New from 'components/Product/New';
+import Details from 'containers/Product/Details';
 import store from 'redux/store';
 import reportWebVitals from 'reportWebVitals';
 import 'antd/dist/antd.css';
@@ -34,10 +34,10 @@ ReactDOM.render(
                   <List />
                 </Route>
                 <Route path="/new">
-                  <New />
+                  <Details />
                 </Route>
                 <Route path="/products/:id">
-                  <New />
+                  <Details />
                 </Route>
               </Switch>
             </Router>

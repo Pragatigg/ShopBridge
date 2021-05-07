@@ -88,7 +88,7 @@ ProductCard.propTypes = {
             PropTypes.string
         ])
       }).isRequired,
-      onDeleteProduct: PropTypes.func.isRequired
+    onDeleteProduct: PropTypes.func.isRequired
 };
 
 export default ProductCard;
