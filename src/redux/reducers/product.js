@@ -11,7 +11,6 @@ const initialState = {
 };
 
 const productReducer = (state=initialState, action) => {
-    console.log(action);
     const { type, payload } = action;
     switch(type) {
         case PRODUCT_FETCH_INITIATED: return {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Card, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import purify from 'dompurify';
@@ -8,42 +9,34 @@ import './styles.scss';
 const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
-    const { id, name, image_link, description, price_sign, price } = product;
-    const renderDescription = (description) => {
-        return (
-            <div dangerouslySetInnerHTML={{ __html: purify.sanitize(description) }} />
-        );
-    }
+    const { id, name, image_link: imageLink, description, price_sign: priceSign, price } = product;
+    const renderDescription = () => (
+        <div dangerouslySetInnerHTML={{ __html: purify.sanitize(description) }} />
+    );
 
-    const renderPrice = (price_sign, price) => {
-        return (
-            <div className="price">
-                <b>{`${price_sign || "₹"} ${price}`}</b>
-            </div>
-        )
-    }
+    const renderPrice = () => (
+        <div className="price">
+            <b>{`${priceSign || "₹"} ${price}`}</b>
+        </div>
+    );
 
-    const renderEdit = (id) => {
-        return (
-            <Link to={`/products/${id}`}>
-                <EditOutlined key="edit" />
-            </Link>
-        );
-    }
+    const renderEdit = () => (
+        <Link to={`/products/${id}`}>
+            <EditOutlined key="edit" />
+        </Link>
+    );
 
-    const renderDelete = (id) => {
-        return (
-            <Popconfirm
-                title="Are you sure to delete this product?"
-                onConfirm={() => {}}
-                onCancel={() => {}}
-                okText="Yes"
-                cancelText="No"
-            >
-                <DeleteOutlined type="danger" />
-            </Popconfirm>
-        );
-    }
+    const renderDelete = () => (
+        <Popconfirm
+            title="Are you sure to delete this product?"
+            onConfirm={() => {}}
+            onCancel={() => {}}
+            okText="Yes"
+            cancelText="No"
+        >
+            <DeleteOutlined type="danger" />
+        </Popconfirm>
+    );
 
     return (
         <Link to={`/products/${id}`}>
@@ -52,11 +45,11 @@ const ProductCard = ({ product }) => {
                 bordered
                 className="product-card"
                 style={{ width: 240 }}
-                cover={<img alt="example" src={image_link} />}
+                cover={<img alt="example" src={imageLink} />}
                 actions={[
-                    renderPrice(price_sign, price),
-                    renderEdit(id),
-                    renderDelete(id),
+                    renderPrice(),
+                    renderEdit(),
+                    renderDelete(),
                 ]}
             >
                 <Meta
@@ -67,5 +60,16 @@ const ProductCard = ({ product }) => {
         </Link>
     );
 }
+
+ProductCard.propTypes = {
+    product: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string, 
+        image_link: PropTypes.string,
+        description: PropTypes.string,
+        price_sign: PropTypes.string,
+        price: PropTypes.number
+      }).isRequired
+};
 
 export default ProductCard;
