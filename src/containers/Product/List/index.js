@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductList from 'components/Product/List';
-import { fetchProducts } from 'redux/actions/product';
+import { fetchProducts, deleteProduct } from 'redux/actions/product';
 
 const List = () => {
     const dispatch = useDispatch();
@@ -11,10 +11,13 @@ const List = () => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
+    const onDeleteProduct = id => dispatch(deleteProduct(id));
+
     return (
         <ProductList 
             products={data}
-            isLoading={isLoading} 
+            isLoading={isLoading}
+            onDeleteProduct={onDeleteProduct}
         />
     )
 };

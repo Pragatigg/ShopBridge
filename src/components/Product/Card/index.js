@@ -8,7 +8,7 @@ import './styles.scss';
 
 const { Meta } = Card;
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onDeleteProduct }) => {
     const { 
         id,
         name,
@@ -36,6 +36,7 @@ const ProductCard = ({ product }) => {
 
     const onConfirm = event => {
         event.stopPropagation();
+        onDeleteProduct(id);
     };
 
     const onCancel = event => event.stopPropagation();
@@ -82,8 +83,12 @@ ProductCard.propTypes = {
         image_link: PropTypes.string,
         description: PropTypes.string,
         price_sign: PropTypes.string,
-        price: PropTypes.number
-      }).isRequired
+        price: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ])
+      }).isRequired,
+      onDeleteProduct: PropTypes.func.isRequired
 };
 
 export default ProductCard;

@@ -7,7 +7,7 @@ import ProductCard from 'components/Product/Card';
 
 import './styles.scss';
 
-const List = ({ products, isLoading }) => (
+const List = ({ products, isLoading, onDeleteProduct }) => (
     <>
         <Row className="mb-3">
             <Col span={24} align="right">
@@ -29,7 +29,12 @@ const List = ({ products, isLoading }) => (
             <Row>
                 <Col span={24}>
                     {products.map(product => (
-                        <ProductCard product={product} />
+                        <span key={product.id}>
+                            <ProductCard
+                                product={product}
+                                onDeleteProduct={onDeleteProduct}
+                            />
+                        </span>
                     ))}
                 </Col>
             </Row>
@@ -44,9 +49,13 @@ List.propTypes = {
         image_link: PropTypes.string,
         description: PropTypes.string,
         price_sign: PropTypes.string,
-        price: PropTypes.number
+        price: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ])
     })).isRequired,
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    onDeleteProduct: PropTypes.func.isRequired
 };
 
 export default List;
