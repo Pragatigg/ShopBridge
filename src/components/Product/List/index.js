@@ -1,11 +1,11 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 import { Row, Col, Spin, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import ProductCard from "../Card";
+import ProductCard from 'components/Product/Card';
 
-import "./styles.scss";
+import './styles.scss';
 
 const List = ({ products, isLoading }) => {
     return (

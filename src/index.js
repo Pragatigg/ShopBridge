@@ -6,15 +6,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route
-} from "react-router-dom";
+} from 'react-router-dom';
 
 
-import List from "./containers/Product/List";
-import New from "./components/Product/New";
-import store from './redux/store';
-import reportWebVitals from './reportWebVitals';
+import List from 'containers/Product/List';
+import New from 'components/Product/New';
+import store from 'redux/store';
+import reportWebVitals from 'reportWebVitals';
 import 'antd/dist/antd.css';
-import './index.scss';
+import 'index.scss';
 
 const { Header, Content, Footer } = Layout;
 const ROOT = document.getElementById('root');

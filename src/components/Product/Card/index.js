@@ -1,9 +1,9 @@
 import { Card, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import purify from "dompurify";
-import { Link } from "react-router-dom";
+import purify from 'dompurify';
+import { Link } from 'react-router-dom';
 
-import "./styles.scss";
+import './styles.scss';
 
 const { Meta } = Card;
 

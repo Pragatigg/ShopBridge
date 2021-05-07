@@ -2,7 +2,7 @@ import {
     PRODUCT_FETCH_INITIATED, 
     PRODUCT_FETCH_SUCCEEDED, 
     PRODUCT_FETCH_FAILED 
-} from "../constants/products";
+} from 'redux/constants/products';
 
 const initialState = {
     isLoading: false,

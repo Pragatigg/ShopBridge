@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { PRODUCT_FETCH_INITIATED } from '../constants/products';
-import { fetchProductsSuccess, fetchProductsFail } from '../actions/product';
-import axios from "axios";
+import { PRODUCT_FETCH_INITIATED } from 'redux/constants/products';
+import { fetchProductsSuccess, fetchProductsFail } from 'redux/actions/product';
+import axios from 'axios';
 
 function* fetchProducts() {
     try {

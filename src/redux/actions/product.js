@@ -2,7 +2,7 @@ import {
     PRODUCT_FETCH_INITIATED, 
     PRODUCT_FETCH_SUCCEEDED, 
     PRODUCT_FETCH_FAILED 
-} from "../constants/products";
+} from 'redux/constants/products';
 
 export const fetchProducts = () => ({
     type: PRODUCT_FETCH_INITIATED
