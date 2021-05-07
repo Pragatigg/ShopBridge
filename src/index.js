@@ -2,9 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Layout } from 'antd';
 import { Provider } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 
 import List from "./containers/Product/List";
+import New from "./components/Product/New";
 import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.css';
@@ -22,7 +28,19 @@ ReactDOM.render(
         </Header>
         <Content className="site-layout">
           <div className="site-layout-background layout-conatiner">
-            <List />
+            <Router>
+              <Switch>
+                <Route path="/" exact>
+                  <List />
+                </Route>
+                <Route path="/new">
+                  <New />
+                </Route>
+                <Route path="/products/:id">
+                  <New />
+                </Route>
+              </Switch>
+            </Router>
           </div>
         </Content>
         <Footer>
