@@ -1,11 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Layout } from 'antd';
+
+import List from "./components/Product/List";
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
 import './index.scss';
+
+const { Header, Content, Footer } = Layout;
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Hello!</h1>
+    <Layout className="full-height">
+      <Header>
+        <h1>ShopBridge</h1>
+      </Header>
+      <Content className="site-layout">
+        <div className="site-layout-background layout-conatiner full-height">
+          <List />
+        </div>
+      </Content>
+      <Footer>
+        <b>think</b>bridge Software 
+      </Footer>
+    </Layout>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root, .full-height {
+  height: 100%;
+}
+
+.ant-layout-header {
+  position: fixed; 
+  zIndex: 1;
+  width: 100%; 
+  
+  h1 {
+    color: white;
+  }
+}
+
+.site-layout {
+  padding: 0 50px;
+  margin-top: 64px;
+  max-height: calc(100% - 134px);
+  min-height: calc(100% - 134px);
+  background: white;
+
+  .layout-conatiner {
+    padding: 24px 0;
+  }
+}
+
+.ant-layout-footer {
+  text-align: center;
+  background: darkgray;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
