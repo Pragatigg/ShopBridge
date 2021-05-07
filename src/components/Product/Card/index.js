@@ -9,7 +9,15 @@ import './styles.scss';
 const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
-    const { id, name, image_link: imageLink, description, price_sign: priceSign, price } = product;
+    const { 
+        id,
+        name,
+        image_link: imageLink,
+        description,
+        price_sign: priceSign,
+        price 
+    } = product;
+    
     const renderDescription = () => (
         <div dangerouslySetInnerHTML={{ __html: purify.sanitize(description) }} />
     );
@@ -26,11 +34,17 @@ const ProductCard = ({ product }) => {
         </Link>
     );
 
+    const onConfirm = event => {
+        event.stopPropagation();
+    };
+
+    const onCancel = event => event.stopPropagation();
+
     const renderDelete = () => (
         <Popconfirm
             title="Are you sure to delete this product?"
-            onConfirm={() => {}}
-            onCancel={() => {}}
+            onConfirm={onConfirm}
+            onCancel={onCancel}
             okText="Yes"
             cancelText="No"
         >
