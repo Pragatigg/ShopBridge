@@ -5,6 +5,7 @@ import {
     PRODUCT_UPDATE_INITIATED,
     PRODUCT_UPDATE_SUCCEEDED,
     PRODUCT_UPDATE_FAILED,
+    PRODUCT_FORM_UPDATE,
     RESET_PRODUCT
 } from 'redux/constants/products';
 
@@ -35,6 +36,10 @@ const productReducer = (state = initialState, action) => {
         case PRODUCT_UPDATE_INITIATED: return {
           ...state,
           isUpdating: true,
+        }
+        case PRODUCT_FORM_UPDATE: return {
+          ...state,
+          data: payload,
         }
         case PRODUCT_UPDATE_SUCCEEDED:
         case PRODUCT_UPDATE_FAILED: return {

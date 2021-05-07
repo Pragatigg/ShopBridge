@@ -8,7 +8,7 @@ import './styles.scss';
 const { TextArea } = Input;
 const { Option } = Select;
 
-const Details = ({ product, isLoading, isNew, onSubmit, isUpdating }) => {
+const Details = ({ product, isLoading, isNew, onSubmit, isUpdating, onFieldChange }) => {
     const {
         name,
         description,
@@ -16,6 +16,14 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating }) => {
         price_sign: priceSign,
         image_link: imageLink
     } = product;
+
+    const onChange = (key, value) => {
+        onFieldChange({
+          ...product,
+          [key]: value
+        });
+    };
+
     return (
         <Card bordered={false} className="product-detail-card">
             {!isNew && imageLink && (
@@ -33,7 +41,11 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating }) => {
                     Name:
                 </Col>
                 <Col span={20}>
-                    <Input value={name} placeholder="Product Name" />
+                    <Input
+                      value={name}
+                      placeholder="Product Name"
+                      onChange={(e) => onChange("name", e.target.value)}
+                    />
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -41,7 +53,12 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating }) => {
                     Description:
                 </Col>
                 <Col span={20}>
-                    <TextArea rows={3} value={description} placeholder="Product Description" />
+                    <TextArea
+                      rows={3}
+                      value={description}
+                      placeholder="Product Description"
+                      onChange={(e) => onChange("description", e.target.value)}
+                    />
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -49,7 +66,9 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating }) => {
                     Price Symbol:
                 </Col>
                 <Col span={20}>
-                  <Select value={priceSign || "₹"}>
+                  <Select
+                    value={priceSign || "₹"}
+                    onChange={currency => onChange("price_sign", currency)}>
                     { currencies.map(currency => (
                       <Option key={currency} value={currency}>{currency}</Option>
                     ))}
@@ -61,7 +80,11 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating }) => {
                     Price:
                 </Col>
                 <Col span={20}>
-                    <Input value={price} placeholder="Product Price" />
+                    <Input
+                      value={price}
+                      placeholder="Product Price"
+                      onChange={(e) => onChange("price", e.target.value)}
+                    />
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -69,7 +92,11 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating }) => {
                     Image URL:
                 </Col>
                 <Col span={20}>
-                    <Input value={imageLink} placeholder="Product Image URL" />
+                    <Input
+                      value={imageLink}
+                      placeholder="Product Image URL"
+                        onChange={(e) => onChange("image_link", e.target.value)}
+                    />
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -102,7 +129,8 @@ Details.propTypes = {
     isLoading: PropTypes.bool.isRequired,
     isNew: PropTypes.bool.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    isUpdating: PropTypes.bool.isRequired
+    isUpdating: PropTypes.bool.isRequired,
+    onFieldChange: PropTypes.func.isRequired
 };
 
 export default Details;

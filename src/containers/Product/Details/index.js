@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouteMatch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import ProductDetails from 'components/Product/Details';
-import { fetchProduct, updateProduct, resetProduct } from 'redux/actions/product';
+import { fetchProduct, updateProduct, resetProduct, formUpdate } from 'redux/actions/product';
 
 const List = () => {
     const { params: { id }} = useRouteMatch();
@@ -12,6 +12,7 @@ const List = () => {
     const onSubmit = () => {
       dispatch(updateProduct(id, data));
     };
+    const onFieldChange = newProduct => dispatch(formUpdate(newProduct));
 
     useEffect(() => {
         if (id) {
@@ -29,6 +30,7 @@ const List = () => {
             isUpdating={isUpdating}
             isNew={isNew}
             onSubmit={onSubmit}
+            onFieldChange={onFieldChange}
         />
     )
 };

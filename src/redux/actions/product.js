@@ -11,6 +11,7 @@ import {
     PRODUCT_UPDATE_INITIATED,
     PRODUCT_UPDATE_SUCCEEDED,
     PRODUCT_UPDATE_FAILED,
+    PRODUCT_FORM_UPDATE,
     RESET_PRODUCT
 } from 'redux/constants/products';
 
@@ -66,6 +67,11 @@ export const updateProductSuccess = () => ({
 
 export const updateProductFailed = () => ({
   type: PRODUCT_UPDATE_FAILED,
+});
+
+export const formUpdate = product => ({
+    type: PRODUCT_FORM_UPDATE,
+    payload: product
 });
 
 export const resetProduct = () => ({
