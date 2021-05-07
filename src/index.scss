@@ -16,9 +16,13 @@ code {
   height: 100%;
 }
 
+.ant-layout {
+  min-height: 100%;
+}
+
 .ant-layout-header {
   position: fixed; 
-  zIndex: 1;
+  z-index: 1000;
   width: 100%; 
   
   h1 {
@@ -29,7 +33,6 @@ code {
 .site-layout {
   padding: 0 50px;
   margin-top: 64px;
-  max-height: calc(100% - 134px);
   min-height: calc(100% - 134px);
   background: white;
 

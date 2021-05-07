@@ -1,24 +1,28 @@
 import { Fragment } from "react";
 import { Row, Col, Table, Button, Tooltip, Space, Popconfirm } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-
-import { DATA } from "./constants";
+import purify from "dompurify";
 
 const COLUMNS = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      width: 200,
     },
     {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
+      render: (desc) => (
+          <div dangerouslySetInnerHTML={{ __html: purify.sanitize(desc) }} />
+      )
     },
     {
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
+      width: 100,
     },
     {
         title: 'Action',
@@ -45,7 +49,7 @@ const COLUMNS = [
     }
 ];
 
-const List = () => {
+const List = ({ products, isLoading }) => {
     return (
         <Fragment>
             <Row className="mb-3">
@@ -55,7 +59,12 @@ const List = () => {
                     </Button>
                 </Col>
             </Row>
-            <Table bordered columns={COLUMNS} dataSource={DATA} />
+            <Table
+                bordered
+                columns={COLUMNS}
+                dataSource={products}
+                loading={isLoading} 
+            />
         </Fragment>
     );
 };
