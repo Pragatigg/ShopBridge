@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import {
    PRODUCTS_FETCH_INITIATED,
@@ -17,14 +16,11 @@ import {
    updateProductFailed
 } from 'redux/actions/product';
 import { showNotification } from "utils";
-import { API_BASE_URL } from "../../constants";
+import Api from "redux/apis/product";
 
 function* fetchProducts() {
     try {
-        const response = yield call(
-            axios.get,
-            `${API_BASE_URL}/products.json?brand=nyx`
-        );
+        const response = yield call(Api.fetchProducts);
         const { data = [] } = response;
         yield put(fetchProductsSuccess(data));
     } catch (e) {
@@ -37,7 +33,7 @@ function* fetchProducts() {
 function* deleteProduct(action) {
     const id = action.payload;
     try {
-        yield call(axios.delete,`${API_BASE_URL}/products/${id}.json`);
+        yield call(Api.deleteProduct, id);
         yield put(deleteProductSuccess(id));
         showNotification("Product Deleted Successfully!");
      } catch (e) {
@@ -50,7 +46,7 @@ function* deleteProduct(action) {
 function* fetchProduct(action) {
     const id = action.payload;
     try {
-        const response = yield call(axios.get,`${API_BASE_URL}/products/${id}.json`);
+        const response = yield call(Api.fetchProduct, id);
         const { data = {} } = response;
         yield put(fetchProductSuccess(data))
      } catch (e) {
@@ -65,9 +61,9 @@ function* updateProduct(action) {
     try {
         let response;
         if (id) {
-          response = yield call(axios.patch,`${API_BASE_URL}/products/${id}.json`, data);
+          response = yield call(Api.updateProduct, id, data);
         } else {
-          response = yield call(axios.post,`${API_BASE_URL}/products/`, data);
+          response = yield call(Api.createProduct, data);
         }
         yield put(updateProductSuccess(response))
      } catch (e) {
