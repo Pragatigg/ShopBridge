@@ -47,10 +47,10 @@ const Details = ({
               </Row>
             )}
             <Row className="mb-3">
-                <Col span={4}>
+                <Col xs={10} sm={6} md={4} lg={4} xl={4}>
                     Name:
                 </Col>
-                <Col span={20}>
+                <Col xs={14} sm ={18} md={20} lg={20} xl={20}>
                     <Input
                       value={name}
                       placeholder="Product Name"
@@ -60,10 +60,10 @@ const Details = ({
                 </Col>
             </Row>
             <Row className="mb-3">
-                <Col span={4}>
+                <Col xs={10} sm={6} md={4} lg={4} xl={4}>
                     Description:
                 </Col>
-                <Col span={20}>
+                <Col xs={14} sm ={18} md={20} lg={20} xl={20}>
                     <TextArea
                       rows={3}
                       value={description}
@@ -74,10 +74,10 @@ const Details = ({
                 </Col>
             </Row>
             <Row className="mb-3">
-                <Col span={4}>
+                <Col xs={10} sm={6} md={4} lg={4} xl={4}>
                     Price Symbol:
                 </Col>
-                <Col span={20}>
+                <Col xs={14} sm ={18} md={20} lg={20} xl={20}>
                   <Select
                     value={priceSign}
                     placeholder="Product Price Symbol"
@@ -90,10 +90,10 @@ const Details = ({
                 </Col>
             </Row>
             <Row className="mb-3">
-                <Col span={4}>
+                <Col xs={10} sm={6} md={4} lg={4} xl={4}>
                     Price:
                 </Col>
-                <Col span={20}>
+                <Col xs={14} sm ={18} md={20} lg={20} xl={20}>
                     <Input
                       type="number"
                       value={price}
@@ -104,10 +104,10 @@ const Details = ({
                 </Col>
             </Row>
             <Row className="mb-3">
-                <Col span={4}>
+                <Col xs={10} sm={6} md={4} lg={4} xl={4}>
                     Image URL:
                 </Col>
-                <Col span={20}>
+                <Col xs={14} sm ={18} md={20} lg={20} xl={20}>
                     <Input
                       value={imageLink}
                       placeholder="Product Image URL"
