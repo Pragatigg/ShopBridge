@@ -12,7 +12,12 @@ const List = ({ products, isLoading, onDeleteProduct }) => (
         <Row className="mb-3">
             <Col span={24} align="right">
                 <Link to="/new">
-                    <Button shape="circle" type="primary" icon={<PlusOutlined />} />
+                    <Button
+                      className="fixed-icon-btn"
+                      shape="circle"
+                      type="primary"
+                      icon={<PlusOutlined />}
+                    />
                 </Link>
             </Col>
         </Row>
@@ -45,7 +50,7 @@ const List = ({ products, isLoading, onDeleteProduct }) => (
 List.propTypes = {
     products: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
-        name: PropTypes.string, 
+        name: PropTypes.string,
         image_link: PropTypes.string,
         description: PropTypes.string,
         price_sign: PropTypes.string,

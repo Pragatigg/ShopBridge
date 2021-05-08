@@ -44,7 +44,7 @@ ReactDOM.render(
           </div>
         </Content>
         <Footer>
-          <b>think</b>bridge Software 
+          Created by <b>Pragati Garud</b>
         </Footer>
       </Layout>
     </Provider>
