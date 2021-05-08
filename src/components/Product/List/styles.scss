@@ -2,3 +2,9 @@
   position: fixed;
   z-index: 1000;
 }
+
+@media only screen and (max-width: 600px) {
+  .add-product {
+    align-items: flex-start !important;
+  }
+}

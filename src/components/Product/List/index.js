@@ -10,7 +10,8 @@ import './styles.scss';
 const List = ({ products, isLoading, onDeleteProduct }) => (
     <>
         <Row className="mb-3">
-            <Col span={24} align="right">
+            <Col xs={14} sm={16} md={20} lg={20} xl={20} />
+            <Col xs={6} sm={8} md={4} lg={4} xl={4} align="right">
                 <Link to="/new">
                     <Button
                       className="fixed-icon-btn"
