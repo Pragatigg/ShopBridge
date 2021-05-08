@@ -8,7 +8,15 @@ import './styles.scss';
 const { TextArea } = Input;
 const { Option } = Select;
 
-const Details = ({ product, isLoading, isNew, onSubmit, isUpdating, onFieldChange }) => {
+const Details = ({
+  product,
+  isLoading,
+  isNew,
+  onSubmit,
+  isUpdating,
+  onFieldChange,
+  validationErrors
+}) => {
     const {
         name,
         description,
@@ -23,6 +31,8 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating, onFieldChang
           [key]: value
         });
     };
+
+    if (isLoading) return null;
 
     return (
         <Card bordered={false} className="product-detail-card">
@@ -46,6 +56,7 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating, onFieldChang
                       placeholder="Product Name"
                       onChange={(e) => onChange("name", e.target.value)}
                     />
+                    <div className="error">{validationErrors.name}</div>
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -59,6 +70,7 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating, onFieldChang
                       placeholder="Product Description"
                       onChange={(e) => onChange("description", e.target.value)}
                     />
+                    <div className="error">{validationErrors.description}</div>
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -67,12 +79,14 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating, onFieldChang
                 </Col>
                 <Col span={20}>
                   <Select
-                    value={priceSign || "₹"}
+                    value={priceSign}
+                    placeholder="Product Price Symbol"
                     onChange={currency => onChange("price_sign", currency)}>
                     { currencies.map(currency => (
                       <Option key={currency} value={currency}>{currency}</Option>
                     ))}
                   </Select>
+                  <div className="error">{validationErrors.price_sign}</div>
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -81,10 +95,12 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating, onFieldChang
                 </Col>
                 <Col span={20}>
                     <Input
+                      type="number"
                       value={price}
                       placeholder="Product Price"
                       onChange={(e) => onChange("price", e.target.value)}
                     />
+                    <div className="error">{validationErrors.price}</div>
                 </Col>
             </Row>
             <Row className="mb-3">
@@ -97,12 +113,13 @@ const Details = ({ product, isLoading, isNew, onSubmit, isUpdating, onFieldChang
                       placeholder="Product Image URL"
                         onChange={(e) => onChange("image_link", e.target.value)}
                     />
+                    <div className="error">{validationErrors.image_link}</div>
                 </Col>
             </Row>
             <Row className="mb-3">
                 <Col span={24} align="right">
                     <Space>
-                        <Button type="primary" loading={isLoading || isUpdating} onClick={onSubmit}>
+                        <Button type="primary" loading={isUpdating} onClick={onSubmit}>
                             {isNew ? "Create Product" : "Update Product"}
                         </Button>
                         <Link to="/">
@@ -130,7 +147,8 @@ Details.propTypes = {
     isNew: PropTypes.bool.isRequired,
     onSubmit: PropTypes.func.isRequired,
     isUpdating: PropTypes.bool.isRequired,
-    onFieldChange: PropTypes.func.isRequired
+    onFieldChange: PropTypes.func.isRequired,
+    validationErrors: PropTypes.object.isRequired,
 };
 
 export default Details;
