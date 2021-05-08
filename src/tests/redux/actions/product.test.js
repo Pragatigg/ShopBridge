@@ -33,14 +33,14 @@ import {
 } from "redux/constants/products";
 
 describe('Product Actions', () => {
-  test('fetch products action', () => {
+  it('fetch products action', () => {
     const fixture = {
       type: PRODUCTS_FETCH_INITIATED
     }
     expect(fetchProducts()).toEqual(fixture);
   });
 
-  test('fetch products success action', () => {
+  it('fetch products success action', () => {
     const data = {};
     const fixture = {
       type: PRODUCTS_FETCH_SUCCEEDED,
@@ -49,21 +49,21 @@ describe('Product Actions', () => {
     expect(fetchProductsSuccess(data)).toEqual(fixture);
   });
 
-  test('fetch products fail action', () => {
+  it('fetch products fail action', () => {
     const fixture = {
       type: PRODUCTS_FETCH_FAILED
     }
     expect(fetchProductsFail()).toEqual(fixture);
   });
 
-  test('fetch product action', () => {
+  it('fetch product action', () => {
     const fixture = {
       type: PRODUCT_FETCH_INITIATED
     }
     expect(fetchProduct()).toEqual(fixture);
   });
 
-  test('fetch product success action', () => {
+  it('fetch product success action', () => {
     const data = {};
     const fixture = {
       type: PRODUCT_FETCH_SUCCEEDED,
@@ -72,14 +72,14 @@ describe('Product Actions', () => {
     expect(fetchProductSuccess(data)).toEqual(fixture);
   });
 
-  test('fetch product fail action', () => {
+  it('fetch product fail action', () => {
     const fixture = {
       type: PRODUCT_FETCH_FAILED
     }
     expect(fetchProductFail()).toEqual(fixture);
   });
 
-  test('delete product action', () => {
+  it('delete product action', () => {
     const id = 2342;
     const fixture = {
       type: PRODUCT_DELETE_INITIATED,
@@ -88,7 +88,7 @@ describe('Product Actions', () => {
     expect(deleteProduct(id)).toEqual(fixture);
   });
 
-  test('delete product success action', () => {
+  it('delete product success action', () => {
     const id = 2342;
     const fixture = {
       type: PRODUCT_DELETE_SUCCEEDED,
@@ -97,14 +97,14 @@ describe('Product Actions', () => {
     expect(deleteProductSuccess(id)).toEqual(fixture);
   });
 
-  test('delete product fail action', () => {
+  it('delete product fail action', () => {
     const fixture = {
       type: PRODUCT_DELETE_FAILED
     }
     expect(deleteProductFail()).toEqual(fixture);
   });
 
-  test('update product action', () => {
+  it('update product action', () => {
     const id = 2342;
     const data = {};
     const fixture = {
@@ -114,21 +114,21 @@ describe('Product Actions', () => {
     expect(updateProduct(id, data)).toEqual(fixture);
   });
 
-  test('update product success action', () => {
+  it('update product success action', () => {
     const fixture = {
       type: PRODUCT_UPDATE_SUCCEEDED,
     }
     expect(updateProductSuccess()).toEqual(fixture);
   });
 
-  test('update product fail action', () => {
+  it('update product fail action', () => {
     const fixture = {
       type: PRODUCT_UPDATE_FAILED,
     }
     expect(updateProductFailed()).toEqual(fixture);
   });
 
-  test('form update action', () => {
+  it('form update action', () => {
     const data = {};
     const fixture = {
       type: PRODUCT_FORM_UPDATE,
@@ -137,7 +137,7 @@ describe('Product Actions', () => {
     expect(formUpdate(data)).toEqual(fixture);
   });
 
-  test('reset product action', () => {
+  it('reset product action', () => {
     const fixture = {
       type: RESET_PRODUCT,
     }

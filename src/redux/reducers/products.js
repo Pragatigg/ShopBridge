@@ -1,16 +1,15 @@
-import { 
-    PRODUCTS_FETCH_INITIATED, 
-    PRODUCTS_FETCH_SUCCEEDED, 
+import {
+    PRODUCTS_FETCH_INITIATED,
+    PRODUCTS_FETCH_SUCCEEDED,
     PRODUCTS_FETCH_FAILED,
     PRODUCT_DELETE_INITIATED,
     PRODUCT_DELETE_SUCCEEDED,
     PRODUCT_DELETE_FAILED
 } from 'redux/constants/products';
 
-const initialState = {
+export const initialState = {
     isLoading: false,
     data: [],
-    totalCount: 0,
     isDeleting: false
 };
 
@@ -21,19 +20,16 @@ const productsReducer = (state = initialState, action) => {
             ...state,
             isLoading: true,
             data: [],
-            totalCount: 0
         }
         case PRODUCTS_FETCH_SUCCEEDED: return {
             ...state,
             isLoading: false,
             data: payload,
-            totalCount: 100,
         }
         case PRODUCTS_FETCH_FAILED: return {
             ...state,
             isLoading: false,
             data: [],
-            totalCount: 0
         }
         case PRODUCT_DELETE_INITIATED: return {
            ...state,
@@ -48,7 +44,7 @@ const productsReducer = (state = initialState, action) => {
             ...state,
             isDeleting: false,
         }
-        default: return state; 
+        default: return state;
     }
 };
 
