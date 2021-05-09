@@ -10,7 +10,7 @@ import {
   deleteProductFail,
   updateProduct,
   updateProductSuccess,
-  updateProductFailed,
+  updateProductFail,
   formUpdate,
   resetProduct
 } from 'redux/actions/product';
@@ -125,7 +125,7 @@ describe('Product Actions', () => {
     const fixture = {
       type: PRODUCT_UPDATE_FAILED,
     }
-    expect(updateProductFailed()).toEqual(fixture);
+    expect(updateProductFail()).toEqual(fixture);
   });
 
   it('form update action', () => {

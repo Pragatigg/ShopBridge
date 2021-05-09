@@ -27,13 +27,13 @@ const List = ({ products, isLoading, onDeleteProduct }) => (
                 <Col span={24}>
                     <div align="center">
                         <Spin />
-                        <div> Fetching products...</div>
+                        <div> Fetching products... </div>
                     </div>
                 </Col>
             </Row>
         ) : (
             <Row>
-                <Col span={24}>
+                <Col span={24} align="center">
                     {products.map(product => (
                         <span key={product.id}>
                             <ProductCard

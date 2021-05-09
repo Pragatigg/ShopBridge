@@ -65,7 +65,7 @@ export const updateProductSuccess = () => ({
   type: PRODUCT_UPDATE_SUCCEEDED,
 });
 
-export const updateProductFailed = () => ({
+export const updateProductFail = () => ({
   type: PRODUCT_UPDATE_FAILED,
 });
 

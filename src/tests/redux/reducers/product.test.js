@@ -5,7 +5,7 @@ import {
   fetchProductFail,
   updateProduct,
   updateProductSuccess,
-  updateProductFailed,
+  updateProductFail,
   formUpdate,
   resetProduct
 } from "redux/actions/product";
@@ -71,7 +71,7 @@ describe('Product Reducer', () => {
       ...state,
       isUpdating: false
     };
-    expect(productReducer(state, updateProductFailed())).toEqual(expectedResult);
+    expect(productReducer(state, updateProductFail())).toEqual(expectedResult);
   });
 
   it('product form update case', () => {
