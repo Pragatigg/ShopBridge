@@ -13,12 +13,12 @@ import {
    fetchProductSuccess,
    fetchProductFail,
    updateProductSuccess,
-   updateProductFailed
+   updateProductFail
 } from 'redux/actions/product';
 import { showNotification } from "utils";
 import Api from "redux/apis/product";
 
-function* fetchProducts() {
+export function* fetchProducts() {
     try {
         const response = yield call(Api.fetchProducts);
         const { data = [] } = response;
@@ -30,7 +30,7 @@ function* fetchProducts() {
     }
 }
 
-function* deleteProduct(action) {
+export function* deleteProduct(action) {
     const id = action.payload;
     try {
         yield call(Api.deleteProduct, id);
@@ -38,12 +38,12 @@ function* deleteProduct(action) {
         showNotification("Product Deleted Successfully!");
      } catch (e) {
         const { message = "somthing went wrong" } = e.response || {};
-        yield put(deleteProductFail(message));
+        yield put(deleteProductFail());
         showNotification(message);
      }
 }
 
-function* fetchProduct(action) {
+export function* fetchProduct(action) {
     const id = action.payload;
     try {
         const response = yield call(Api.fetchProduct, id);
@@ -56,19 +56,18 @@ function* fetchProduct(action) {
      }
 }
 
-function* updateProduct(action) {
+export function* updateProduct(action) {
     const { id, data } = action.payload;
     try {
-        let response;
         if (id) {
-          response = yield call(Api.updateProduct, id, data);
+          yield call(Api.updateProduct, id, data);
         } else {
-          response = yield call(Api.createProduct, data);
+          yield call(Api.createProduct, data);
         }
-        yield put(updateProductSuccess(response))
+        yield put(updateProductSuccess())
      } catch (e) {
         const { message = "somthing went wrong" } = e.response || {};
-        yield put(updateProductFailed(message));
+        yield put(updateProductFail(message));
         showNotification(message);
      }
 }

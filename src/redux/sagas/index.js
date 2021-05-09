@@ -6,5 +6,5 @@ function* rootSaga() {
         fork(productSaga),
     ]);
 }
-  
+
 export default rootSaga;

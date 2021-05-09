@@ -9,7 +9,7 @@ import {
     RESET_PRODUCT
 } from 'redux/constants/products';
 
-const initialState = {
+export const initialState = {
     isLoading: false,
     data: {},
     isUpdating: false,
